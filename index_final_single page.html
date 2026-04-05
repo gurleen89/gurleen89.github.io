@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Quantum Direct Logistics | Freight & Cargo Shipping</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #152c5e;
+    --navy-dark: #0d1e42;
+    --sky: #1e90d8;
+    --sky-light: #47b4f5;
+    --gray: #6b7280;
+    --gray-light: #f4f7fb;
+    --white: #ffffff;
+    --text: #1f2937;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Barlow', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(13,30,66,0.97); backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(30,144,216,0.25);
+    padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
+    height: 78px; transition: box-shadow 0.3s;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .nav-logo img {height: 50px; width: auto; object-fit: contain; border-radius: 6px;}
+  .nav-logo-text .q { font-family: 'Barlow Condensed',sans-serif; font-weight: 800; font-size: 1.3rem; color: #fff; letter-spacing: 1px; line-height:1.1; }
+  .nav-logo-text .sub { font-family: 'Barlow Condensed',sans-serif; font-weight: 600; font-size: 0.68rem; color: var(--sky-light); letter-spacing: 3px; }
+  .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
+  .nav-links a { font-family: 'Barlow Condensed',sans-serif; font-weight: 600; font-size: 0.93rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.8); text-decoration: none; padding: 6px 14px; border-radius: 4px; transition: color 0.2s, background 0.2s; }
+  .nav-links a:hover { color: var(--sky-light); background: rgba(30,144,216,0.12); }
+  .nav-cta { background: var(--sky) !important; color: #fff !important; padding: 8px 20px !important; border-radius: 4px; }
+  .nav-cta:hover { background: var(--sky-light) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(13,30,66,0.92) 0%, rgba(26,57,117,0.88) 50%, rgba(15,42,94,0.93) 100%),
+                url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1600&q=85') center/cover no-repeat;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; padding: 110px 5% 70px;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(30,144,216,0.18); border: 1px solid rgba(30,144,216,0.45); border-radius: 50px; padding: 6px 18px; margin-bottom: 28px; font-size: 0.78rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--sky-light); }
+  .hero-badge span { width: 6px; height: 6px; background: var(--sky-light); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.3} }
+  .hero h1 { font-family: 'Barlow Condensed',sans-serif; font-weight: 800; font-size: clamp(2.8rem,6vw,5rem); line-height: 1.05; color: #fff; margin-bottom: 20px; text-transform: uppercase; }
+  .hero h1 em { color: var(--sky-light); font-style: normal; }
+  .hero p { font-size: 1.08rem; line-height: 1.75; color: rgba(255,255,255,0.78); max-width: 520px; margin-bottom: 36px; font-weight: 300; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary { background: var(--sky); color: #fff; padding: 14px 30px; border-radius: 5px; font-weight: 600; font-size: 0.97rem; text-decoration: none; transition: all 0.3s; border: 2px solid transparent; display: inline-block; }
+  .btn-primary:hover { background: transparent; border-color: var(--sky); color: #fff; }
+  .btn-outline { background: transparent; color: #fff; padding: 14px 30px; border-radius: 5px; font-weight: 600; font-size: 0.97rem; text-decoration: none; border: 2px solid rgba(255,255,255,0.4); transition: all 0.3s; display: inline-block; }
+  .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+  .hero-stats { margin-top: 54px; display: flex; gap: 44px; flex-wrap: wrap; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.12); }
+  .hero-stat .num { font-family: 'Barlow Condensed',sans-serif; font-weight: 800; font-size: 2.4rem; color: var(--sky-light); line-height: 1; }
+  .hero-stat .lbl { font-size: 0.78rem; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px; }
+
+  /* QUOTE STRIP */
+  .quote-strip { background: var(--sky); }
+  .quote-strip-inner { display: flex; align-items: stretch; max-width: 1300px; margin: 0 auto; }
+  .quote-label { background: var(--navy-dark); color: #fff; padding: 22px 44px 22px 32px; font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; gap: 10px; white-space: nowrap; clip-path: polygon(0 0,calc(100% - 18px) 0,100% 50%,calc(100% - 18px) 100%,0 100%); }
+  .quote-form { display: flex; align-items: center; flex: 1; flex-wrap: wrap; }
+  .quote-form input, .quote-form select { border: none; background: transparent; border-right: 1px solid rgba(255,255,255,0.3); padding: 22px 18px; font-size: 0.88rem; color: #fff; font-family: 'Barlow',sans-serif; outline: none; flex: 1; min-width: 130px; }
+  .quote-form input::placeholder { color: rgba(255,255,255,0.75); }
+  .quote-form select option { color: var(--text); background: #fff; }
+  .quote-submit { background: var(--navy-dark); border: none; color: #fff; padding: 22px 28px; font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 0.97rem; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+  .quote-submit:hover { background: #060f24; }
+
+  /* SECTIONS */
+  section { padding: 88px 5%; }
+  .section-tag { display: inline-block; font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; color: var(--sky); border-left: 3px solid var(--sky); padding-left: 12px; margin-bottom: 16px; }
+  .section-title { font-family: 'Barlow Condensed',sans-serif; font-weight: 800; font-size: clamp(2rem,4vw,2.9rem); line-height: 1.1; text-transform: uppercase; color: var(--navy); }
+  .section-title em { color: var(--sky); font-style: normal; }
+  .section-subtitle { color: var(--gray); font-size: 0.97rem; line-height: 1.75; max-width: 580px; margin-top: 14px; font-weight: 300; }
+  .centered { text-align: center; }
+  .centered .section-subtitle { margin: 14px auto 0; }
+  .centered .section-tag { border-left: none; border-bottom: 3px solid var(--sky); padding-left: 0; padding-bottom: 6px; }
+
+  /* ABOUT */
+  .about { background: var(--gray-light); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .about-visual { position: relative; }
+  .about-img-box { border-radius: 14px; overflow: hidden; aspect-ratio: 4/3; position: relative; }
+  .about-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .about-img-box::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(21,44,94,0.3) 0%,transparent 60%); }
+  .about-badge-box { position: absolute; bottom: -24px; right: -20px; background: var(--sky); color: #fff; border-radius: 10px; padding: 18px 26px; text-align: center; box-shadow: 0 10px 40px rgba(30,144,216,0.4); z-index: 2; }
+  .about-badge-box .big { font-family: 'Barlow Condensed',sans-serif; font-weight: 800; font-size: 2.6rem; line-height: 1; }
+  .about-badge-box .sm { font-size: 0.72rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; opacity: 0.9; margin-top: 4px; }
+  .about-content { padding-top: 16px; }
+  .about-points { margin-top: 28px; display: flex; flex-direction: column; gap: 18px; }
+  .about-point { display: flex; gap: 14px; align-items: flex-start; }
+  .about-point-icon { width: 42px; height: 42px; border-radius: 8px; background: rgba(30,144,216,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .about-point-icon svg { width: 20px; height: 20px; }
+  .about-point h4 { font-weight: 600; font-size: 0.93rem; margin-bottom: 2px; }
+  .about-point p { color: var(--gray); font-size: 0.87rem; line-height: 1.65; }
+
+  /* SERVICES */
+  .services { background: #fff; }
+  .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin-top: 50px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .service-card { position: relative; overflow: hidden; cursor: default; height: 320px; }
+  .service-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .service-card:hover img { transform: scale(1.07); }
+  .service-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(13,30,66,0.92) 0%, rgba(13,30,66,0.5) 50%, rgba(13,30,66,0.2) 100%);
+    transition: background 0.3s;
+  }
+  .service-card:hover .service-overlay {
+    background: linear-gradient(to top, rgba(13,30,66,0.97) 0%, rgba(13,30,66,0.7) 60%, rgba(13,30,66,0.35) 100%);
+  }
+  .service-content {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px;
+    transition: transform 0.3s ease;
+  }
+  .service-icon-sm { width: 40px; height: 40px; border-radius: 8px; background: var(--sky); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
+  .service-icon-sm svg { width: 20px; height: 20px; color: white; }
+  .service-card h3 { font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 1.25rem; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .service-card p { color: rgba(255,255,255,0.78); font-size: 0.84rem; line-height: 1.65; }
+  .service-features { margin-top: 12px; display: flex; flex-direction: column; gap: 4px; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+  .service-card:hover .service-features { opacity: 1; transform: translateY(0); }
+  .service-feat { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; color: var(--sky-light); font-weight: 500; }
+  .service-feat::before { content:''; width:5px; height:5px; background:var(--sky-light); border-radius:50%; flex-shrink:0; }
+
+  /* REAL PHOTOS STRIP */
+  .photo-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; height: 280px; }
+  .photo-strip-item { overflow: hidden; position: relative; }
+  .photo-strip-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .photo-strip-item:hover img { transform: scale(1.05); }
+  .photo-strip-item .caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(13,30,66,0.85), transparent); color: #fff; padding: 20px 18px 14px; font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* WHY */
+  .why { background: var(--navy); padding: 88px 5%; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .why .section-title { color: #fff; }
+  .why .section-tag { color: var(--sky-light); border-color: var(--sky-light); }
+  .why .section-subtitle { color: rgba(255,255,255,0.58); }
+  .why-left { display: flex; flex-direction: column; gap: 20px; }
+  .why-img { border-radius: 12px; overflow: hidden; height: 260px; position: relative; }
+  .why-img img { width: 100%; height: 100%; object-fit: cover; }
+  .why-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .why-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 22px 18px; transition: all 0.3s; }
+  .why-card:hover { background: rgba(30,144,216,0.15); border-color: rgba(30,144,216,0.3); }
+  .why-card .icon { font-size: 1.7rem; margin-bottom: 10px; }
+  .why-card h4 { font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 1rem; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 7px; }
+  .why-card p { font-size: 0.83rem; color: rgba(255,255,255,0.52); line-height: 1.6; }
+
+  /* PROCESS */
+  .process { background: var(--gray-light); }
+  .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 56px; max-width: 1200px; margin-left: auto; margin-right: auto; position: relative; }
+  .process-steps::before { content:''; position:absolute; top:40px; left:12.5%; right:12.5%; height:2px; background:linear-gradient(90deg,var(--navy),var(--sky)); }
+  .process-step { text-align: center; padding: 0 18px; }
+  .step-num { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg,var(--navy),var(--sky)); color: #fff; font-family: 'Barlow Condensed',sans-serif; font-weight: 800; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; position: relative; z-index: 1; box-shadow: 0 8px 24px rgba(21,44,94,0.3); }
+  .process-step h4 { font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 1.08rem; color: var(--navy); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .process-step p { font-size: 0.86rem; color: var(--gray); line-height: 1.65; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: #fff; }
+  .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-top: 50px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .testi-card { border: 1px solid #e5eaf3; border-radius: 10px; padding: 28px; position: relative; transition: box-shadow 0.3s; }
+  .testi-card:hover { box-shadow: 0 8px 32px rgba(21,44,94,0.1); }
+  .testi-card::before { content:'"'; font-size: 6rem; color: var(--sky); opacity: 0.13; position: absolute; top:-10px; left:20px; font-family:serif; line-height:1; }
+  .testi-text { color: var(--gray); font-size: 0.88rem; line-height: 1.8; margin-bottom: 20px; position: relative; }
+  .testi-author { display: flex; align-items: center; gap: 12px; }
+  .testi-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg,var(--navy),var(--sky)); display: flex; align-items: center; justify-content: center; color: #fff; font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 1.05rem; }
+  .testi-name { font-weight: 600; font-size: 0.88rem; color: var(--navy); }
+  .testi-role { font-size: 0.78rem; color: var(--gray); }
+  .testi-stars { color: #f59e0b; font-size: 0.85rem; margin-bottom: 12px; }
+
+  /* CONTACT */
+  .contact { background: var(--gray-light); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; max-width: 1200px; margin: 50px auto 0; }
+  .contact-info h3 { font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--navy); text-transform: uppercase; margin-bottom: 18px; }
+  .contact-info > p { color: var(--gray); font-size: 0.9rem; line-height: 1.8; margin-bottom: 28px; }
+  .contact-items { display: flex; flex-direction: column; gap: 18px; }
+  .contact-item { display: flex; gap: 14px; align-items: flex-start; }
+  .c-icon { width: 42px; height: 42px; border-radius: 8px; background: var(--sky); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .c-icon svg { width: 18px; height: 18px; color: #fff; }
+  .c-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--sky); }
+  .c-val { font-size: 0.9rem; color: var(--navy); font-weight: 500; margin-top: 2px; }
+  .contact-form { background: #fff; border-radius: 12px; padding: 38px; box-shadow: 0 4px 32px rgba(21,44,94,0.07); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--navy); margin-bottom: 7px; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; border: 1.5px solid #dde3f0; border-radius: 6px; padding: 11px 14px; font-size: 0.9rem; font-family: 'Barlow',sans-serif; color: var(--text); outline: none; transition: border-color 0.2s; background: var(--gray-light); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--sky); background: #fff; }
+  .form-group textarea { height: 110px; resize: vertical; }
+  .btn-submit { width: 100%; background: var(--navy); color: #fff; border: none; padding: 14px; border-radius: 6px; font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 1.02rem; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+  .btn-submit:hover { background: var(--sky); }
+
+  /* FOOTER */
+  footer { background: var(--navy-dark); color: rgba(255,255,255,0.68); padding: 60px 5% 28px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; max-width: 1200px; margin: 0 auto; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .footer-brand p { font-size: 0.86rem; line-height: 1.8; margin-top: 16px; }
+  .footer-logo img { height: 60px; width: auto; }
+  .footer-col h5 { font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 0.97rem; letter-spacing: 2px; text-transform: uppercase; color: #fff; margin-bottom: 18px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { color: rgba(255,255,255,0.58); text-decoration: none; font-size: 0.86rem; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--sky-light); }
+  .footer-social { display: flex; gap: 10px; margin-top: 18px; }
+  .social-btn { width: 38px; height: 38px; border-radius: 6px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6); text-decoration: none; transition: all 0.2s; font-size: 0.82rem; font-weight: 700; }
+  .social-btn:hover { background: var(--sky); border-color: var(--sky); color: #fff; }
+  .footer-bottom { max-width: 1200px; margin: 22px auto 0; display: flex; justify-content: space-between; align-items: center; padding-top: 24px; font-size: 0.8rem; }
+
+  /* SCROLL FADE */
+  .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media(max-width:1024px) {
+    .services-grid { grid-template-columns: repeat(2,1fr); }
+    .photo-strip { grid-template-columns: 1fr 1fr; height: 220px; }
+    .photo-strip-item:last-child { display: none; }
+  }
+  @media(max-width:960px) {
+    .about-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-badge-box { right: 0; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .why-cards { grid-template-columns: 1fr 1fr; }
+  }
+  @media(max-width:720px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 78px; left: 0; right: 0; background: var(--navy-dark); padding: 18px; gap: 4px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .photo-strip { grid-template-columns: 1fr; height: auto; }
+    .photo-strip-item { height: 200px; }
+    .photo-strip-item:nth-child(2), .photo-strip-item:last-child { display: none; }
+    .quote-strip-inner { flex-direction: column; }
+    .quote-label { clip-path: none; padding-right: 28px; }
+    .quote-form { flex-direction: column; }
+    .quote-form input, .quote-form select { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.25); width: 100%; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    .process-steps { grid-template-columns: 1fr; }
+    .why-cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#home" class="nav-logo">
+    <img src="logo_final.png" alt="Quantum Direct Logistics"/>
+    <div class="nav-logo-text">
+      <div class="q">QUANTUM DIRECT</div>
+      <div class="sub">Logistics</div>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO - Real truck background -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> Licensed &amp; Bonded Freight Broker</div>
+    <h1>Moving Freight.<br/><em>Delivered Right.</em></h1>
+    <p>Quantum Direct Logistics connects shippers with reliable carriers across North America. Full truckload, LTL, expedited — we handle every mile with precision and care.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">500+</div><div class="lbl">Carriers Network</div></div>
+      <div class="hero-stat"><div class="num">48</div><div class="lbl">States Covered</div></div>
+      <div class="hero-stat"><div class="num">24/7</div><div class="lbl">Support Available</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-visual fade-up">
+      <div class="about-img-box">
+        <img src="container.jpg" alt="Freight truck on highway" loading="lazy"/>
+      </div>
+      <div class="about-badge-box">
+        <div class="big">3PL</div>
+        <div class="sm">Certified Broker</div>
+      </div>
+    </div>
+    <div class="about-content fade-up">
+      <div class="section-tag">About Us</div>
+      <h2 class="section-title">Your <em>Trusted</em><br/>Freight Partner</h2>
+      <p class="section-subtitle">Quantum Direct Logistics is a licensed, non-asset-based freight brokerage connecting shippers with a vast network of vetted carriers across the United States. We move freight smarter — so you can focus on your business.</p>
+      <div class="about-points">
+        <div class="about-point">
+          <div class="about-point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg></div>
+          <div><h4>Licensed &amp; Bonded Broker</h4><p>Fully licensed freight broker operating with transparency, insurance, and compliance across all U.S. states.</p></div>
+        </div>
+        <div class="about-point">
+          <div class="about-point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
+          <div><h4>Real-Time Tracking</h4><p>Stay informed every step of the way with live shipment tracking and proactive communication from our team.</p></div>
+        </div>
+        <div class="about-point">
+          <div class="about-point-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div><h4>500+ Carrier Network</h4><p>Access to a massive pre-vetted carrier base means competitive rates and reliable capacity — even in tight markets.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES - Full photo cards -->
+<section class="services" id="services">
+  <div class="centered fade-up">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Freight Solutions <em>Built</em> for Every Need</h2>
+    <p class="section-subtitle">From single pallets to oversized cargo, Quantum Direct has the experience and network to move your freight safely and on time.</p>
+  </div>
+  <div class="services-grid" style="margin-top:40px;">
+    <div class="service-card fade-up">
+      <img src="full truckload.jpg" alt="Full Truckload" loading="lazy"/>
+      <div class="service-overlay"></div>
+      <div class="service-content">
+        <div class="service-icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <h3>Full Truckload (FTL)</h3>
+        <p>Dedicated capacity for large shipments. Faster transit, less handling, competitive rates.</p>
+        <div class="service-features">
+          <div class="service-feat">Dry van, flatbed &amp; reefer available</div>
+          <div class="service-feat">Door-to-door, 48-state coverage</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <img src="https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=700&q=80" alt="LTL Freight" loading="lazy"/>
+      <div class="service-overlay"></div>
+      <div class="service-content">
+        <div class="service-icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <h3>Less Than Truckload (LTL)</h3>
+        <p>Only pay for the space you use. Efficient, cost-effective consolidated freight.</p>
+        <div class="service-features">
+          <div class="service-feat">Pallet-level tracking</div>
+          <div class="service-feat">Standard &amp; guaranteed options</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <img src="Expedited.jpg" alt="Expedited Freight" loading="lazy"/>
+      <div class="service-overlay"></div>
+      <div class="service-content">
+        <div class="service-icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg></div>
+        <h3>Expedited Freight</h3>
+        <p>Time-critical shipments with priority handling and guaranteed delivery windows.</p>
+        <div class="service-features">
+          <div class="service-feat">Team drivers available</div>
+          <div class="service-feat">24/7 dispatch &amp; monitoring</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <img src="flat bed.jpg" alt="Flatbed Freight" loading="lazy"/>
+      <div class="service-overlay"></div>
+      <div class="service-content">
+        <div class="service-icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+        <h3>Flatbed &amp; Specialized</h3>
+        <p>Oversized, heavy-haul, and out-of-gauge cargo with specialized equipment.</p>
+        <div class="service-features">
+          <div class="service-feat">Step deck &amp; RGN available</div>
+          <div class="service-feat">Permitting assistance</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=700&q=80" alt="Temperature Controlled" loading="lazy"/>
+      <div class="service-overlay"></div>
+      <div class="service-content">
+        <div class="service-icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h3>Temperature Controlled</h3>
+        <p>Refrigerated and frozen freight with full cold chain compliance and monitoring.</p>
+        <div class="service-features">
+          <div class="service-feat">FSMA-compliant carriers</div>
+          <div class="service-feat">Continuous temp monitoring</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <img src="cross border.jpg" alt="Cross-Border Shipping" loading="lazy"/>
+      <div class="service-overlay"></div>
+      <div class="service-content">
+        <div class="service-icon-sm"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3>Cross-Border Shipping</h3>
+        <p>U.S.-Canada and U.S.-Mexico freight with customs coordination and documentation.</p>
+        <div class="service-features">
+          <div class="service-feat">CTPAT-certified carriers</div>
+          <div class="service-feat">Full customs documentation</div>
+        </div>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <img src="warehouse.jpg" alt="Warehousing" loading="lazy"/>
+      <div class="service-overlay"></div>
+      <div class="service-content">
+        <div class="service-icon-sm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M3 9l9-6 9 6v11a2 2 0 0 1-2 2h-4v-7H9v7H5a2 2 0 0 1-2-2V9z"/>
+          </svg>
+        </div>
+        <h3>Warehousing</h3>
+        <p>Secure storage and efficient inventory management to keep your supply chain moving.</p>
+        <div class="service-features">
+          <div class="service-feat">Short & long-term storage</div>
+          <div class="service-feat">Inventory tracking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why" id="why">
+  <div class="why-grid">
+    <div class="why-left fade-up">
+      <div>
+        <div class="section-tag">Why Quantum Direct</div>
+        <h2 class="section-title">The Right Partner<br/>Makes All the <em>Difference</em></h2>
+        <p class="section-subtitle">We don't just move freight — we build partnerships. Our experienced freight brokers are committed to your success on every single load.</p>
+        <br/>
+        <a href="#contact" class="btn-primary">Work With Us &rarr;</a>
+      </div>
+      <div class="why-img">
+        <img src="why choose us.jpg" alt="Truck at sunset" loading="lazy"/>
+      </div>
+    </div>
+    <div class="why-cards fade-up">
+      <div class="why-card"><div class="icon">&#127758;</div><h4>Nationwide Coverage</h4><p>Lanes across all 48 contiguous states with a trusted carrier network ready to move your freight.</p></div>
+      <div class="why-card"><div class="icon">&#128176;</div><h4>Competitive Pricing</h4><p>Access to negotiated rates means you get maximum value without sacrificing service quality.</p></div>
+      <div class="why-card"><div class="icon">&#128225;</div><h4>Real-Time Visibility</h4><p>Live tracking and proactive updates keep you informed from pickup to proof of delivery.</p></div>
+      <div class="why-card"><div class="icon">&#129309;</div><h4>Dedicated Support</h4><p>A single point of contact who knows your business — responsive, reliable, always available.</p></div>
+      <div class="why-card"><div class="icon">&#9889;</div><h4>Fast Quoting</h4><p>Get competitive quotes quickly so you can make decisions and move freight without delays.</p></div>
+      <div class="why-card"><div class="icon">&#128274;</div><h4>Insured &amp; Bonded</h4><p>Full cargo insurance and surety bond give you peace of mind that your freight is protected.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="centered fade-up">
+    <div class="section-tag">How It Works</div>
+    <h2 class="section-title">Simple. <em>Fast.</em> Reliable.</h2>
+    <p class="section-subtitle">From your first call to final delivery, we make logistics easy in four clear steps.</p>
+  </div>
+  <div class="process-steps">
+    <div class="process-step fade-up">
+      <div class="step-num">01</div>
+      <h4>Request a Quote</h4>
+      <p>Tell us your origin, destination, freight type, and timeline. We respond fast with competitive pricing.</p>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num">02</div>
+      <h4>We Book the Load</h4>
+      <p>Our team sources the best vetted carrier — matched on safety, reliability, and cost.</p>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num">03</div>
+      <h4>Real-Time Tracking</h4>
+      <p>Live updates so you always know exactly where your freight is, from pickup to delivery.</p>
+    </div>
+    <div class="process-step fade-up">
+      <div class="step-num">04</div>
+      <h4>Delivered &amp; Confirmed</h4>
+      <p>Proof of delivery provided promptly. We handle billing and paperwork so you don't have to.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="centered fade-up">
+    <div class="section-tag">Client Reviews</div>
+    <h2 class="section-title">What <em>Shippers</em> Say</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card fade-up">
+      <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testi-text">Quantum Direct has been handling our FTL shipments for months. Rates are fair, communication is excellent, and they've never missed a delivery window. Highly recommended.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MR</div>
+        <div><div class="testi-name">Michael R.</div><div class="testi-role">Operations Manager, Building Materials</div></div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testi-text">Quantum Direct team saved us on a last-minute expedited load when our usual carrier fell through. They found a solution within the hour. That's the kind of service we rely on.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">SL</div>
+        <div><div class="testi-name">Sarah L.</div><div class="testi-role">Logistics Coordinator, Manufacturing</div></div>
+      </div>
+    </div>
+    <div class="testi-card fade-up">
+      <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <p class="testi-text">Very professional and easy to work with. Transparent pricing, no hidden fees, and they kept me updated throughout. Will definitely use again.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">DK</div>
+        <div><div class="testi-name">David K.</div><div class="testi-role">Owner, Distribution Company</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="centered fade-up">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Ready to Ship? <em>Let's Talk.</em></h2>
+    <p class="section-subtitle">Reach out for a free quote or to discuss your shipping needs. We respond within one business day.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info fade-up">
+      <h3>Contact Information</h3>
+      <p>Whether you need a quick quote or want to discuss a long-term shipping partnership, our team is ready to help.</p>
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.58 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div>
+            <div class="c-label">Phone</div>
+            <div class="c-val"><a href="tel:9015953282" style="color:inherit;text-decoration:none;">9015953282</a></div>
+            <div class="c-val"><a href="tel:7863508987" style="color:inherit;text-decoration:none;">7863508987</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-val"><a href="mailto:contact@qdlogx.com" style="color:inherit;text-decoration:none;">contact@qdlogx.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></div>
+          <div>
+            <div class="c-label">Business Hours</div>
+            <div class="c-val">Mon&ndash;Fri: 8:00 AM &ndash; 6:00 PM EST</div>
+            <div class="c-val" style="color:var(--gray);font-size:0.83rem;font-weight:400;">Emergency freight support 24/7</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="logo_final.png" alt="Quantum Direct Logistics"/>
+      </div>
+      <p>Licensed freight broker connecting shippers with reliable carriers across North America. Moving freight smarter, every load.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">f</a>
+        <a href="mailto:contact@qdlogx.com" class="social-btn">@</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Navigation</h5>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Full Truckload (FTL)</a></li>
+        <li><a href="#services">Less Than Truckload (LTL)</a></li>
+        <li><a href="#services">Expedited Freight</a></li>
+        <li><a href="#services">Flatbed &amp; Specialized</a></li>
+        <li><a href="#services">Temperature Controlled</a></li>
+        <li><a href="#services">Cross-Border</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact Us</h5>
+      <ul>
+        <li><a href="tel:9015953282">9015953282</a></li>
+        <li><a href="tel:7863508987">7863508987</a></li>
+        <li><a href="mailto:contact@qdlogx.com">contact@qdlogx.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>&copy; 2025 Quantum Direct Logistics. All rights reserved.</div>
+    <div style="display:flex;gap:20px;">
+      <a href="#" style="color:rgba(255,255,255,0.38);text-decoration:none;">Privacy Policy</a>
+      <a href="#" style="color:rgba(255,255,255,0.38);text-decoration:none;">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').style.boxShadow = window.scrollY > 40 ? '0 4px 28px rgba(0,0,0,0.28)' : 'none';
+  });
+
+  // Scroll fade
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 70);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Close mobile nav on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  function submitQuick() {
+    const o = document.getElementById('qqOrigin').value.trim();
+    const d = document.getElementById('qqDest').value.trim();
+    const t = document.getElementById('qqType').value;
+    const p = document.getElementById('qqPhone').value.trim();
+    if (!o || !d || !t || !p) { alert('Please fill in all fields to request a quote.'); return; }
+    alert('Thank you! Your quote request has been received.\nWe\'ll contact you at ' + p + ' shortly.\n\nFor immediate assistance:\n9015953282');
+  }
+
+  function submitForm() {
+    const fname = document.getElementById('fname').value.trim();
+    const femail = document.getElementById('femail').value.trim();
+    if (!fname || !femail) { alert('Please fill in at least your name and email.'); return; }
+    alert('Thank you, ' + fname + '!\n\nWe\'ve received your request and will respond within one business day.\n\nFor urgent shipments call us directly:\n9015953282\n7863508987');
+  }
+</script>
+</body>
+</html>
