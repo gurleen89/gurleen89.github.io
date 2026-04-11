@@ -28,10 +28,12 @@
     padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
     height: 78px; transition: box-shadow 0.3s;
   }
-  .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+
+  /* .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; } */
   .nav-logo img {height: 50px; width: auto; object-fit: contain; border-radius: 6px;}
-  .nav-logo-text .q { font-family: 'Barlow Condensed',sans-serif; font-weight: 800; font-size: 1.3rem; color: #fff; letter-spacing: 1px; line-height:1.1; }
-  .nav-logo-text .sub { font-family: 'Barlow Condensed',sans-serif; font-weight: 600; font-size: 0.68rem; color: var(--sky-light); letter-spacing: 3px; }
+  .nav-logo-text {display: flex;flex-direction: column;align-items: center; line-height: 1.2;}
+  .nav-logo-text .q { font-family: 'Barlow Condensed',sans-serif; font-weight: 600; font-size: 18px; color: #fff; letter-spacing: 1px; line-height:1.1; }
+  .nav-logo-text .sub { font-family: 'Barlow Condensed',sans-serif; font-weight: 600; font-size: 12px; color: var(--sky-light); letter-spacing: 3px; }
   .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
   .nav-links a { font-family: 'Barlow Condensed',sans-serif; font-weight: 600; font-size: 0.93rem; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.8); text-decoration: none; padding: 6px 14px; border-radius: 4px; transition: color 0.2s, background 0.2s; }
   .nav-links a:hover { color: var(--sky-light); background: rgba(30,144,216,0.12); }
@@ -39,6 +41,23 @@
   .nav-cta:hover { background: var(--sky-light) !important; }
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
   .hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; }
+  .nav-logo {display: flex;align-items: center;gap: 10px;text-decoration: none;
+  
+  /* QUANTUM */
+  .quantum {font-size: 18px;font-weight: 600;letter-spacing: 2px;color: #5aa9e6}
+
+  /* -- DIRECT -- */
+  .direct {font-size: 12px;letter-spacing: 3px;color: #fff;position: relative;width: fit-content;}
+
+  /* Lines before and after DIRECT */
+  .direct::before,
+  .direct::after {content: "";position: absolute;top: 50%;width: 20px;height: 1px;background: #fff;}
+  .direct::before {left: -25px;}
+  .direct::after {right: -25px;}
+
+  /* Logistics */
+  .logistics {font-size: 13px;color: #fff;letter-spacing: 2px;}}
+
 
   /* HERO */
   .hero {
@@ -254,12 +273,21 @@
 
 <!-- NAV -->
 <nav id="mainNav">
+  <!-- <a href="#home" class="nav-logo">
+  <img src="images/logo_final.png" alt="Quantum Direct Logistics"/>
+  <div class="nav-logo-text">
+    <span class="q">QUANTUM DIRECT</span>
+    <span class="sub">LOGISTICS</span>
+  </div>
+  </a> -->
   <a href="#home" class="nav-logo">
-    <img src="images/logo_final.png" alt="Quantum Direct Logistics"/>
-    <div class="nav-logo-text">
-      <div class="q">QUANTUM DIRECT</div>
-      <div class="sub">Logistics</div>
-    </div>
+  <img src="images/logo_final.png" alt="Quantum Direct Logistics"/>
+
+  <div class="nav-logo-text">
+    <div class="quantum">QUANTUM</div>
+    <div class="direct">DIRECT</div>
+    <div class="logistics">LOGISTICS</div>
+  </div>
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#about">About</a></li>
@@ -268,7 +296,6 @@
     <li><a href="#process">Process</a></li>
     <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#contact">Contact</a></li>
-    <!-- <li><a href="#contact" class="nav-cta">Get a Quote</a></li> -->
   </ul>
   <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
     <span></span><span></span><span></span>
@@ -540,7 +567,6 @@
           <div>
             <div class="c-label">Contact</div>
             <div class="c-val"><a href="tel:+1 227 256 0313" style="color:inherit;text-decoration:none;">+1 227 256 0313</a></div>
-            <div class="c-val"><a href="tel:+1 227 248 0762" style="color:inherit;text-decoration:none;">+1 227 248 0762</a></div>
           </div>
         </div>
         <div class="contact-items">
@@ -580,7 +606,7 @@
       </div>
       <p>Licensed freight broker connecting shippers with reliable carriers across North America. Moving freight smarter, every load.</p>
       <div class="footer-social">
-        <a href="#" class="social-btn">in</a>
+        <a href="https://www.linkedin.com/company/quantum-direct-logistics/" class="social-btn">in</a>
         <a href="https://www.facebook.com/profile.php?id=61572370889006" class="social-btn">f</a>
         <a href="mailto:contact@qdlogx.com" class="social-btn">@</a>
       </div>
@@ -611,7 +637,6 @@
       <h5>Contact Us</h5>
       <ul>
         <li><a href="tel:+1 227 256 0313">+1 227 256 0313</a></li>
-        <li><a href="tel:+1 227 248 0762">+1 227 248 0762</a></li>
         <li><a href="mailto:contact@qdlogx.com">contact@qdlogx.com</a></li>
       </ul>
     </div>
