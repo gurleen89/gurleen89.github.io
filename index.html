@@ -28,8 +28,6 @@
     padding: 0 5%; display: flex; align-items: center; justify-content: space-between;
     height: 78px; transition: box-shadow 0.3s;
   }
-
-  /* .nav-logo { display: flex; align-items: center; gap: 14px; text-decoration: none; } */
   .nav-logo img {height: 50px; width: auto; object-fit: contain; border-radius: 6px;}
   .nav-logo-text {display: flex;flex-direction: column;align-items: center; line-height: 1.2;}
   .nav-logo-text .q { font-family: 'Barlow Condensed',sans-serif; font-weight: 600; font-size: 18px; color: #fff; letter-spacing: 1px; line-height:1.1; }
@@ -41,23 +39,13 @@
   .nav-cta:hover { background: var(--sky-light) !important; }
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
   .hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; }
-  .nav-logo {display: flex;align-items: center;gap: 10px;text-decoration: none;
-  
-  /* QUANTUM */
+  .nav-logo {display: flex;align-items: center;gap: 10px;text-decoration: none;}
   .quantum {font-size: 18px;font-weight: 600;letter-spacing: 2px;color: #5aa9e6}
-
-  /* -- DIRECT -- */
   .direct {font-size: 12px;letter-spacing: 3px;color: #fff;position: relative;width: fit-content;}
-
-  /* Lines before and after DIRECT */
-  .direct::before,
-  .direct::after {content: "";position: absolute;top: 50%;width: 20px;height: 1px;background: #fff;}
+  .direct::before,.direct::after {content: "";position: absolute;top: 50%;width: 20px;height: 1px;background: #fff;}
   .direct::before {left: -25px;}
   .direct::after {right: -25px;}
-
-  /* Logistics */
-  .logistics {font-size: 13px;color: #fff;letter-spacing: 2px;}}
-
+  .logistics {font-size: 13px;color: #fff;letter-spacing: 2px;}
 
   /* HERO */
   .hero {
@@ -128,18 +116,9 @@
   .service-card { position: relative; overflow: hidden; cursor: default; height: 320px; }
   .service-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
   .service-card:hover img { transform: scale(1.07); }
-  .service-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(13,30,66,0.92) 0%, rgba(13,30,66,0.5) 50%, rgba(13,30,66,0.2) 100%);
-    transition: background 0.3s;
-  }
-  .service-card:hover .service-overlay {
-    background: linear-gradient(to top, rgba(13,30,66,0.97) 0%, rgba(13,30,66,0.7) 60%, rgba(13,30,66,0.35) 100%);
-  }
-  .service-content {
-    position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px;
-    transition: transform 0.3s ease;
-  }
+  .service-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,30,66,0.92) 0%, rgba(13,30,66,0.5) 50%, rgba(13,30,66,0.2) 100%); transition: background 0.3s; }
+  .service-card:hover .service-overlay { background: linear-gradient(to top, rgba(13,30,66,0.97) 0%, rgba(13,30,66,0.7) 60%, rgba(13,30,66,0.35) 100%); }
+  .service-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px; transition: transform 0.3s ease; }
   .service-icon-sm { width: 40px; height: 40px; border-radius: 8px; background: var(--sky); display: flex; align-items: center; justify-content: center; margin-bottom: 12px; }
   .service-icon-sm svg { width: 20px; height: 20px; color: white; }
   .service-card h3 { font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 1.25rem; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
@@ -148,13 +127,6 @@
   .service-card:hover .service-features { opacity: 1; transform: translateY(0); }
   .service-feat { display: flex; align-items: center; gap: 7px; font-size: 0.8rem; color: var(--sky-light); font-weight: 500; }
   .service-feat::before { content:''; width:5px; height:5px; background:var(--sky-light); border-radius:50%; flex-shrink:0; }
-
-  /* REAL PHOTOS STRIP */
-  .photo-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; height: 280px; }
-  .photo-strip-item { overflow: hidden; position: relative; }
-  .photo-strip-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-  .photo-strip-item:hover img { transform: scale(1.05); }
-  .photo-strip-item .caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(13,30,66,0.85), transparent); color: #fff; padding: 20px 18px 14px; font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; }
 
   /* WHY */
   .why { background: var(--navy); padding: 88px 5%; }
@@ -215,6 +187,135 @@
   .btn-submit { width: 100%; background: var(--navy); color: #fff; border: none; padding: 14px; border-radius: 6px; font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 1.02rem; letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
   .btn-submit:hover { background: var(--sky); }
 
+  /* ============================================================
+     CONTACT FORM (NEW) — matches the screenshot style
+     ============================================================ */
+  .contact-form-section {
+    background: var(--gray-light);
+    padding: 72px 5% 0;
+  }
+  .contact-form-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 40px rgba(21,44,94,0.10);
+    padding: 44px 44px 40px;
+    border: 1.5px solid #dde3f0;
+  }
+  /* Logo inside form */
+  .form-logo-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e5eaf3;
+  }
+  .form-logo-header img {
+    height: 56px;
+    width: auto;
+    margin-bottom: 10px;
+  }
+  .form-logo-header .form-brand-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    color: var(--navy);
+    text-transform: uppercase;
+  }
+  .form-logo-header .form-brand-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--sky);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  /* Field labels */
+  .cf-label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  /* .cf-label .req { color: #c0392b; margin-left: 3px; } */
+  .cf-label .req { color: #152c5e; margin-left: 3px; }
+  /* Name row */
+  .cf-name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .cf-field {
+    margin-bottom: 20px;
+  }
+  .cf-input {
+    width: 100%;
+    background: #f0f4f8;
+    border: 1.5px solid transparent;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    font-family: 'Barlow', sans-serif;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .cf-input::placeholder { color: #b0b8c9; font-size: 0.9rem; }
+  .cf-input:focus { border-color: var(--sky); background: #fff; }
+  .cf-textarea {
+    width: 100%;
+    background: #f0f4f8;
+    border: 1.5px solid transparent;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    font-family: 'Barlow', sans-serif;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    height: 130px;
+    resize: vertical;
+  }
+  .cf-textarea:focus { border-color: var(--sky); background: #fff; }
+  /* Go button */
+  .cf-submit {
+    /* background: #c0392b; */
+    background : #152c5e;
+    color: #fff;
+    border: none;
+    padding: 15px 44px;
+    border-radius: 8px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 6px;
+  }
+  .cf-submit:hover { background: #a93226; transform: translateY(-1px); }
+  .cf-submit:active { transform: translateY(0); }
+  /* Success message */
+  .cf-success {
+    display: none;
+    background: #edfaf1;
+    border: 1.5px solid #2ecc71;
+    border-radius: 8px;
+    padding: 16px 20px;
+    color: #1a7a3a;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 16px;
+    text-align: center;
+  }
+
   /* FOOTER */
   footer { background: var(--navy-dark); color: rgba(255,255,255,0.68); padding: 60px 5% 28px; }
   .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 40px; max-width: 1200px; margin: 0 auto; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08); }
@@ -229,6 +330,96 @@
   .social-btn:hover { background: var(--sky); border-color: var(--sky); color: #fff; }
   .footer-bottom { max-width: 1200px; margin: 22px auto 0; display: flex; justify-content: space-between; align-items: center; padding-top: 24px; font-size: 0.8rem; }
 
+  /* ============================================================
+     COOKIE CONSENT POPUP (NEW)
+     ============================================================ */
+  .cookie-overlay {
+    position: fixed; inset: 0; z-index: 9998;
+    background: rgba(10,20,45,0.45);
+    backdrop-filter: blur(3px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .cookie-overlay.show { opacity: 1; pointer-events: all; }
+
+  .cookie-popup {
+    position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%) translateY(30px);
+    z-index: 9999; width: min(92vw, 580px);
+    background: #fff; border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(13,30,66,0.22), 0 4px 16px rgba(13,30,66,0.12);
+    padding: 32px 32px 28px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    border-top: 4px solid var(--sky);
+  }
+  .cookie-popup.show { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+
+  .cookie-popup-logo {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
+  }
+  .cookie-popup-logo img { height: 36px; width: auto; }
+  .cookie-popup-logo .brand { font-family: 'Barlow Condensed',sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 2px; color: var(--navy); text-transform: uppercase; }
+
+  .cookie-popup h4 {
+    font-family: 'Barlow Condensed',sans-serif; font-weight: 800;
+    font-size: 1.3rem; color: var(--navy); text-transform: uppercase;
+    letter-spacing: 0.5px; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .cookie-popup h4 .cookie-icon { font-size: 1.4rem; }
+  .cookie-popup p {
+    font-size: 0.88rem; color: var(--gray); line-height: 1.75; margin-bottom: 22px;
+  }
+  .cookie-popup p a { color: var(--sky); text-decoration: none; }
+  .cookie-popup p a:hover { text-decoration: underline; }
+
+  .cookie-toggle-row {
+    display: flex; flex-direction: column; gap: 10px; margin-bottom: 22px;
+  }
+  .cookie-toggle-item {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--gray-light); border-radius: 8px; padding: 10px 14px;
+  }
+  .cookie-toggle-item .toggle-label { font-size: 0.83rem; font-weight: 600; color: var(--navy); }
+  .cookie-toggle-item .toggle-desc { font-size: 0.76rem; color: var(--gray); margin-top: 1px; }
+  /* Toggle switch */
+  .toggle-switch { position: relative; width: 40px; height: 22px; flex-shrink: 0; margin-left: 12px; }
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+  .toggle-slider {
+    position: absolute; cursor: pointer; inset: 0;
+    background: #cbd5e1; border-radius: 22px; transition: 0.3s;
+  }
+  .toggle-slider::before {
+    content: ''; position: absolute; width: 16px; height: 16px;
+    left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: 0.3s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  }
+  .toggle-switch input:checked + .toggle-slider { background: var(--sky); }
+  .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); }
+  .toggle-switch input:disabled + .toggle-slider { background: #94a3b8; cursor: not-allowed; }
+
+  .cookie-btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .cookie-btn {
+    flex: 1; min-width: 120px; padding: 12px 18px; border-radius: 8px;
+    font-family: 'Barlow Condensed',sans-serif; font-weight: 700;
+    font-size: 0.97rem; letter-spacing: 1.5px; text-transform: uppercase;
+    cursor: pointer; border: none; transition: all 0.2s;
+  }
+  .cookie-btn-accept { background: var(--navy); color: #fff; }
+  .cookie-btn-accept:hover { background: var(--sky); }
+  .cookie-btn-reject { background: var(--gray-light); color: var(--navy); border: 1.5px solid #dde3f0; }
+  .cookie-btn-reject:hover { background: #e2e8f0; }
+  .cookie-btn-customize { background: transparent; color: var(--sky); border: 1.5px solid var(--sky); }
+  .cookie-btn-customize:hover { background: rgba(30,144,216,0.08); }
+
+  .cookie-customize-panel { display: none; margin-bottom: 18px; }
+  .cookie-customize-panel.open { display: block; }
+
+  @media(max-width:480px) {
+    .cookie-popup { padding: 24px 18px 20px; bottom: 0; border-radius: 16px 16px 0 0; width: 100%; }
+    .cookie-btn-row { flex-direction: column; }
+  }
+
   /* SCROLL FADE */
   .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -236,8 +427,6 @@
   /* RESPONSIVE */
   @media(max-width:1024px) {
     .services-grid { grid-template-columns: repeat(2,1fr); }
-    .photo-strip { grid-template-columns: 1fr 1fr; height: 220px; }
-    .photo-strip-item:last-child { display: none; }
   }
   @media(max-width:960px) {
     .about-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -247,15 +436,13 @@
     .testi-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .why-cards { grid-template-columns: 1fr 1fr; }
+    .contact-form-wrapper { padding: 32px 24px; }
   }
   @media(max-width:720px) {
     .nav-links { display: none; }
     .hamburger { display: flex; }
     .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 78px; left: 0; right: 0; background: var(--navy-dark); padding: 18px; gap: 4px; }
     .services-grid { grid-template-columns: 1fr; }
-    .photo-strip { grid-template-columns: 1fr; height: auto; }
-    .photo-strip-item { height: 200px; }
-    .photo-strip-item:nth-child(2), .photo-strip-item:last-child { display: none; }
     .quote-strip-inner { flex-direction: column; }
     .quote-label { clip-path: none; padding-right: 28px; }
     .quote-form { flex-direction: column; }
@@ -265,24 +452,78 @@
     .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
     .process-steps { grid-template-columns: 1fr; }
     .why-cards { grid-template-columns: 1fr; }
+    .cf-name-row { grid-template-columns: 1fr; }
+    .contact-form-wrapper { padding: 28px 18px; }
   }
-
 </style>
 </head>
 <body>
 
+<!-- ============================================================
+     COOKIE CONSENT POPUP (NEW)
+     ============================================================ -->
+<div class="cookie-overlay" id="cookieOverlay"></div>
+
+<div class="cookie-popup" id="cookiePopup" role="dialog" aria-label="Cookie preferences">
+
+  <!-- Logo -->
+  <div class="cookie-popup-logo">
+    <img src="images/logo_final.png" alt="Quantum Direct Logistics" onerror="this.style.display='none'"/>
+    <span class="brand">Quantum Direct Logistics</span>
+  </div>
+
+  <h4> We Use Cookies</h4>
+  <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. You can choose which cookies you allow below. Read our <a href="privacy-policy.html">Privacy Policy</a> for more details.</p>
+
+  <!-- Customize panel (hidden by default, shown on "Customize") -->
+  <div class="cookie-customize-panel" id="cookieCustomizePanel">
+    <div class="cookie-toggle-row">
+      <div class="cookie-toggle-item">
+        <div>
+          <div class="toggle-label">Essential Cookies</div>
+          <div class="toggle-desc">Required for the website to function. Cannot be disabled.</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" checked disabled/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="cookie-toggle-item">
+        <div>
+          <div class="toggle-label">Analytics Cookies</div>
+          <div class="toggle-desc">Help us understand how visitors interact with our site.</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="cookieAnalytics" checked/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="cookie-toggle-item">
+        <div>
+          <div class="toggle-label">Marketing Cookies</div>
+          <div class="toggle-desc">Used to deliver relevant ads and track campaign performance.</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="cookieMarketing"/>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="cookie-btn-row">
+    <button class="cookie-btn cookie-btn-accept" onclick="cookieAcceptAll()">Accept All</button>
+    <button class="cookie-btn cookie-btn-reject" onclick="cookieRejectAll()">Reject All</button>
+    <button class="cookie-btn cookie-btn-customize" id="cookieCustomizeBtn" onclick="toggleCookieCustomize()">Customize</button>
+  </div>
+</div>
+<!-- *** END COOKIE POPUP *** -->
+
 <!-- NAV -->
 <nav id="mainNav">
-  <!-- <a href="#home" class="nav-logo">
-  <img src="images/logo_final.png" alt="Quantum Direct Logistics"/>
-  <div class="nav-logo-text">
-    <span class="q">QUANTUM DIRECT</span>
-    <span class="sub">LOGISTICS</span>
-  </div>
-  </a> -->
   <a href="#home" class="nav-logo">
   <img src="images/logo_final.png" alt="Quantum Direct Logistics"/>
-
   <div class="nav-logo-text">
     <div class="quantum">QUANTUM</div>
     <div class="direct">DIRECT</div>
@@ -302,7 +543,7 @@
   </div>
 </nav>
 
-<!-- HERO - Real truck background -->
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-content">
     <div class="hero-badge"><span></span> Licensed &amp; Bonded Freight Broker</div>
@@ -353,7 +594,7 @@
   </div>
 </section>
 
-<!-- SERVICES - Full photo cards -->
+<!-- SERVICES -->
 <section class="services" id="services">
   <div class="centered fade-up">
     <div class="section-tag">What We Offer</div>
@@ -451,7 +692,7 @@
         <h3>Warehousing</h3>
         <p>Secure storage and efficient inventory management to keep your supply chain moving.</p>
         <div class="service-features">
-          <div class="service-feat">Short & long-term storage</div>
+          <div class="service-feat">Short &amp; long-term storage</div>
           <div class="service-feat">Inventory tracking</div>
         </div>
       </div>
@@ -550,13 +791,68 @@
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- ============================================================
+     CONTACT SECTION
+     NEW: Contact Form (screenshot style) placed ABOVE contact info
+     ============================================================ -->
 <section class="contact" id="contact">
+
+  <!-- Section heading (kept from original) -->
   <div class="centered fade-up">
     <div class="section-tag">Get In Touch</div>
     <h2 class="section-title">Ready to Ship? <em>Let's Talk.</em></h2>
     <p class="section-subtitle">Reach out for a free quote or to discuss your shipping needs. We respond within one business day.</p>
   </div>
+
+  <!-- *** NEW CONTACT FORM — inserted here, above Contact Information *** -->
+  <div class="contact-form-wrapper fade-up" style="max-width:700px; margin: 48px auto 0; background:#fff; border-radius:14px; box-shadow:0 4px 40px rgba(21,44,94,0.10); padding:44px 44px 40px; border:1.5px solid #dde3f0;">
+
+    <!-- Company logo + name inside form -->
+    <div class="form-logo-header" style="display:flex;flex-direction:column;align-items:center;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid #e5eaf3;">
+      <img src="images/logo_final.png" alt="Quantum Direct Logistics" style="height:56px;width:auto;margin-bottom:10px;" onerror="this.style.display='none'"/>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:3px;color:var(--navy);text-transform:uppercase;">Quantum Direct</div>
+      <div style="font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;letter-spacing:4px;color:var(--sky);text-transform:uppercase;margin-top:2px;">Logistics</div>
+    </div>
+
+    <!-- Name fields -->
+    <label class="cf-label" style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:8px;">
+      Name <span style="color:#c0392b;">*</span>
+    </label>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;" class="cf-name-grid">
+      <input id="cf-first" type="text" placeholder="First" class="cf-input" style="width:100%;background:#f0f4f8;border:1.5px solid transparent;border-radius:8px;padding:14px 16px;font-size:0.95rem;font-family:'Barlow',sans-serif;color:var(--text);outline:none;transition:border-color 0.2s,background 0.2s;" onfocus="this.style.borderColor='var(--sky)';this.style.background='#fff'" onblur="this.style.borderColor='transparent';this.style.background='#f0f4f8'"/>
+      <input id="cf-last" type="text" placeholder="Last" class="cf-input" style="width:100%;background:#f0f4f8;border:1.5px solid transparent;border-radius:8px;padding:14px 16px;font-size:0.95rem;font-family:'Barlow',sans-serif;color:var(--text);outline:none;transition:border-color 0.2s,background 0.2s;" onfocus="this.style.borderColor='var(--sky)';this.style.background='#fff'" onblur="this.style.borderColor='transparent';this.style.background='#f0f4f8'"/>
+    </div>
+
+    <!-- Email -->
+    <label class="cf-label" style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:8px;">
+      Email <span style="color:#c0392b;">*</span>
+    </label>
+    <input id="cf-email" type="email" placeholder="" class="cf-input" style="width:100%;background:#f0f4f8;border:1.5px solid transparent;border-radius:8px;padding:14px 16px;font-size:0.95rem;font-family:'Barlow',sans-serif;color:var(--text);outline:none;margin-bottom:20px;display:block;" onfocus="this.style.borderColor='var(--sky)';this.style.background='#fff'" onblur="this.style.borderColor='transparent';this.style.background='#f0f4f8'"/>
+
+    <!-- Phone -->
+    <label class="cf-label" style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:8px;">Phone</label>
+    <input id="cf-phone" type="tel" placeholder="" class="cf-input" style="width:100%;background:#f0f4f8;border:1.5px solid transparent;border-radius:8px;padding:14px 16px;font-size:0.95rem;font-family:'Barlow',sans-serif;color:var(--text);outline:none;margin-bottom:20px;display:block;" onfocus="this.style.borderColor='var(--sky)';this.style.background='#fff'" onblur="this.style.borderColor='transparent';this.style.background='#f0f4f8'"/>
+
+    <!-- Message -->
+    <label class="cf-label" style="display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--navy);margin-bottom:8px;">
+      Message <span style="color:#c0392b;">*</span>
+    </label>
+    <textarea id="cf-message" placeholder="" style="width:100%;background:#f0f4f8;border:1.5px solid transparent;border-radius:8px;padding:14px 16px;font-size:0.95rem;font-family:'Barlow',sans-serif;color:var(--text);outline:none;height:130px;resize:vertical;margin-bottom:24px;display:block;" onfocus="this.style.borderColor='var(--sky)';this.style.background='#fff'" onblur="this.style.borderColor='transparent';this.style.background='#f0f4f8'"></textarea>
+
+    <!-- Submit -->
+    <button onclick="submitContactForm()" style="background:#c0392b;color:#fff;border:none;padding:15px 44px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.15rem;letter-spacing:2px;cursor:pointer;transition:background 0.2s;" onmouseover="this.style.background='#a93226'" onmouseout="this.style.background='#c0392b'">Submit!</button>
+
+    <!-- Success message -->
+    <div id="cf-success" style="display:none;background:#edfaf1;border:1.5px solid #2ecc71;border-radius:8px;padding:16px 20px;color:#1a7a3a;font-weight:600;font-size:0.95rem;margin-top:16px;text-align:center;">
+      ✓ Thank you! Your message has been sent. We'll get back to you within one business day.
+    </div>
+    <div id="cf-error" style="display:none;background:#fef0f0;border:1.5px solid #e74c3c;border-radius:8px;padding:16px 20px;color:#c0392b;font-weight:600;font-size:0.95rem;margin-top:16px;text-align:center;">
+      Please fill in all required fields (Name, Email, and Message).
+    </div>
+  </div>
+  <!-- *** END NEW CONTACT FORM *** -->
+
+  <!-- CONTACT INFORMATION -->
   <div class="contact-grid">
     <div class="contact-info fade-up">
       <h3>Contact Information</h3>
@@ -566,22 +862,21 @@
           <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.58 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
           <div>
             <div class="c-label">Contact</div>
-            <div class="c-val"><a href="tel:+1 227 256 0313" style="color:inherit;text-decoration:none;">+1 227 256 0313</a></div>
+            <div class="c-val"><a href="tel:+12272560313" style="color:inherit;text-decoration:none;">+1 227 256 0313</a></div>
           </div>
         </div>
-        <div class="contact-items">
         <div class="contact-item">
           <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.58 1.32h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
           <div>
             <div class="c-label">Fax number</div>
-            <div class="c-val"><a href="tel:+1 227 256 0495" style="color:inherit;text-decoration:none;">+1 227 256 0495</a></div>
+            <div class="c-val"><a href="tel:+12272560495" style="color:inherit;text-decoration:none;">+1 227 256 0495</a></div>
           </div>
         </div>
         <div class="contact-item">
           <div class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
           <div>
             <div class="c-label">Email</div>
-            <div class="c-val"><a href="mailto:contact@ship-qdl.com" style="color:inherit;text-decoration:none;">contact@ship-qdl.com</a></div>
+            <div class="c-val"><a href="mailto:contact@qdlogx.com" style="color:inherit;text-decoration:none;">contact@qdlogx.com</a></div>
             <div class="c-val"><a href="mailto:Info@ship-qdl.com" style="color:inherit;text-decoration:none;">info@ship-qdl.com</a></div>
           </div>
         </div>
@@ -609,7 +904,7 @@
       <div class="footer-social">
         <a href="https://www.linkedin.com/company/quantum-direct-logistics/" class="social-btn">in</a>
         <a href="https://www.facebook.com/profile.php?id=61572370889006" class="social-btn">f</a>
-        <a href="mailto:contact@ship-qdl.com" class="social-btn">@</a>
+        <a href="mailto:contact@qdlogx.com" class="social-btn">@</a>
       </div>
     </div>
     <div class="footer-col">
@@ -637,8 +932,8 @@
     <div class="footer-col">
       <h5>Contact Us</h5>
       <ul>
-        <li><a href="tel:+1 227 256 0313">+1 227 256 0313</a></li>
-        <li><a href="mailto:contact@ship-qdl.com">contact@ship-qdl.com</a></li>
+        <li><a href="tel:+12272560313">+1 227 256 0313</a></li>
+        <li><a href="mailto:contact@qdlogx.com">contact@qdlogx.com</a></li>
         <li><a href="mailto:Info@ship-qdl.com">info@ship-qdl.com</a></li>
       </ul>
     </div>
@@ -671,21 +966,118 @@
     a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
   });
 
-  function submitQuick() {
-    const o = document.getElementById('qqOrigin').value.trim();
-    const d = document.getElementById('qqDest').value.trim();
-    const t = document.getElementById('qqType').value;
-    const p = document.getElementById('qqPhone').value.trim();
-    if (!o || !d || !t || !p) { alert('Please fill in all fields to request a quote.'); return; }
-    alert('Thank you! Your quote request has been received.\nWe\'ll contact you at ' + p + ' shortly.\n\nFor immediate assistance:\n9015953282');
+  // *** NEW: Contact form submission via Formspree ***
+  // Replace YOUR_FORMSPREE_ID below with your actual Formspree endpoint ID
+  // Sign up free at https://formspree.io — takes 2 minutes
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xwvzzwja';
+
+  async function submitContactForm() {
+    const first   = document.getElementById('cf-first').value.trim();
+    const last    = document.getElementById('cf-last').value.trim();
+    const email   = document.getElementById('cf-email').value.trim();
+    const phone   = document.getElementById('cf-phone').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
+
+    // Hide any previous messages
+    document.getElementById('cf-success').style.display = 'none';
+    document.getElementById('cf-error').style.display = 'none';
+
+    // Validate required fields
+    if (!first || !last || !email || !message) {
+      document.getElementById('cf-error').style.display = 'block';
+      return;
+    }
+
+    // If Formspree is not configured yet, fall back to mailto
+    if (FORMSPREE_ENDPOINT.includes('YOUR_FORMSPREE_ID')) {
+      const body = encodeURIComponent(
+        'Name: ' + first + ' ' + last + '\nEmail: ' + email +
+        '\nPhone: ' + (phone || 'N/A') + '\n\nMessage:\n' + message
+      );
+      window.location.href = 'mailto:contact@ship-qdl.com?subject=Website%20Inquiry%20from%20' +
+        encodeURIComponent(first + ' ' + last) + '&body=' + body;
+      document.getElementById('cf-success').style.display = 'block';
+      return;
+    }
+
+    // Submit to Formspree
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name: first + ' ' + last, email, phone, message })
+      });
+      if (res.ok) {
+        document.getElementById('cf-success').style.display = 'block';
+        // Clear form
+        ['cf-first','cf-last','cf-email','cf-phone','cf-message'].forEach(id => {
+          document.getElementById(id).value = '';
+        });
+      } else {
+        throw new Error('Server error');
+      }
+    } catch(e) {
+      document.getElementById('cf-error').textContent = 'Something went wrong. Please email us directly at contact@ship-qdl.com';
+      document.getElementById('cf-error').style.display = 'block';
+    }
   }
 
-  function submitForm() {
-    const fname = document.getElementById('fname').value.trim();
-    const femail = document.getElementById('femail').value.trim();
-    if (!fname || !femail) { alert('Please fill in at least your name and email.'); return; }
-    alert('Thank you, ' + fname + '!\n\nWe\'ve received your request and will respond within one business day.\n\nFor urgent shipments call us directly:\n9015953282\n7863508987');
+  // ============================================================
+  // COOKIE CONSENT LOGIC (NEW)
+  // ============================================================
+  function showCookiePopup() {
+    document.getElementById('cookieOverlay').classList.add('show');
+    document.getElementById('cookiePopup').classList.add('show');
   }
+  function hideCookiePopup() {
+    document.getElementById('cookieOverlay').classList.remove('show');
+    document.getElementById('cookiePopup').classList.remove('show');
+  }
+  function cookieAcceptAll() {
+    localStorage.setItem('qdl_cookie_consent', JSON.stringify({ essential: true, analytics: true, marketing: true, date: Date.now() }));
+    hideCookiePopup();
+  }
+  function cookieRejectAll() {
+    localStorage.setItem('qdl_cookie_consent', JSON.stringify({ essential: true, analytics: false, marketing: false, date: Date.now() }));
+    hideCookiePopup();
+  }
+  function cookieSaveCustom() {
+    const analytics = document.getElementById('cookieAnalytics').checked;
+    const marketing = document.getElementById('cookieMarketing').checked;
+    localStorage.setItem('qdl_cookie_consent', JSON.stringify({ essential: true, analytics, marketing, date: Date.now() }));
+    hideCookiePopup();
+  }
+  function toggleCookieCustomize() {
+    const panel = document.getElementById('cookieCustomizePanel');
+    const btn   = document.getElementById('cookieCustomizeBtn');
+    const isOpen = panel.classList.toggle('open');
+    if (isOpen) {
+      btn.textContent = 'Save Preferences';
+      btn.onclick = cookieSaveCustom;
+    } else {
+      btn.textContent = 'Customize';
+      btn.onclick = toggleCookieCustomize;
+    }
+  }
+  // Show popup if no consent saved yet (or saved > 180 days ago)
+  (function() {
+    const saved = localStorage.getItem('qdl_cookie_consent');
+    if (!saved) { setTimeout(showCookiePopup, 800); return; }
+    try {
+      const parsed = JSON.parse(saved);
+      const days = (Date.now() - parsed.date) / 86400000;
+      if (days > 180) setTimeout(showCookiePopup, 800);
+    } catch(e) { setTimeout(showCookiePopup, 800); }
+  })();
+
+  function checkNameGrid() {
+    const grids = document.querySelectorAll('.cf-name-grid');
+    grids.forEach(g => {
+      g.style.gridTemplateColumns = window.innerWidth < 600 ? '1fr' : '1fr 1fr';
+    });
+  }
+  window.addEventListener('resize', checkNameGrid);
+  checkNameGrid();
 </script>
 </body>
 </html>
